@@ -1,23 +1,18 @@
 # VadHänder?
 
 ## Set up project
-Run project:
-
+**Start project:**
 ```sh
 docker-compose up
 ```
-
-Stop project: 
-
-Run project:
-
+**Stop project:** 
 ```sh
 docker-compose down
 ```
 ### Running Ollama 🦙
 When using docker it can be a bit tricky the first time since it need to pull the model for the first time. The process might get stuck in a loop giving you error message: `ollama exit code 0`.
 
-The solution to the issue was to simply restart and remove the container & volume. Otherwise it pretty awesome! (If you Mac fag stop complaining, I am using Windows aka hard-mode and I get it running)
+The solution to the issue was to simply restart and remove the container & volume. Otherwise it pretty awesome! (If you are a MAC fag stop complaining, I am using Windows aka hard-mode and I get it to run)
 
 ## Test connection
 Run in terminal: 
