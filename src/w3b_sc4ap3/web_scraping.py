@@ -62,7 +62,7 @@ def remove_empty_elements(html):
     soup = BeautifulSoup(html, "html.parser")
 
     def is_empty(element):
-        # Check if the element is empty or only contains other empty tags
+        # Check if the element is empty or only contains other empty tags, we want to remove script & style tag. But let's keep for now.
         if element.name in ["script", "style"]:
             return False  # Don't consider script and style tags as empty
         # Check if the element is empty but has attributes
@@ -126,7 +126,7 @@ input_html_str = """
 print("Input:")
 print(input_html_str)
 
-# Promote child elements
+# Input html into pipe and pass on each method before returning value
 output_html = pipe(
     input_html_str,
     remove_attributes,
