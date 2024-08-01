@@ -98,20 +98,15 @@ def pipe(value, *functions):
 
 
 def clean_html(html):
-    print("Input:")
-    print(input_html_str)
 
     # Input html into pipe and pass on each method before returning value
-    output_html = pipe(
+    output = pipe(
         input_html_str,
         remove_attributes,
         promote_single_child_elements,
         remove_empty_elements,
     )
-
-    print("Output:")
-    print(output_html)
-    return output_html
+    return output
 
 
 # Example HTML
@@ -140,4 +135,4 @@ input_html_str = """
 
 """
 
-clean_html(input_html_str)
+output_html  = clean_html(input_html_str)
