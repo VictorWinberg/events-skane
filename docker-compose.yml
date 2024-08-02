@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   fastapi-app:
@@ -7,10 +7,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    volumes:
+      - ./src/server:/code
     environment:
       - ENV=development
     networks:
       - my_network
+
   ollama:
     build:
       context: ./src/ollama
@@ -25,6 +28,7 @@ services:
     tty: true
     networks:
       - my_network
+
 volumes:
   ollama:
 networks:
