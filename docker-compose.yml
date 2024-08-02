@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   fastapi-app:
@@ -11,6 +11,10 @@ services:
       - ENV=development
     networks:
       - my_network
+    depends_on:
+      ollama:
+        condition: service_healthy
+
   ollama:
     build:
       context: ./src/ollama
@@ -25,6 +29,12 @@ services:
     tty: true
     networks:
       - my_network
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /tmp/ollama_ready"]
+      interval: 5s
+      timeout: 10s
+      retries: 99999
+
 volumes:
   ollama:
 networks:
