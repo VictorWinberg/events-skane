@@ -18,11 +18,12 @@ def read_root():
 def generate_prompt(country: str):
     user_query = f"What is the weather in {country}?"
     output = llm_generate_prompt(MODEL, user_query)
-    return {"Message": output}
+    return {"Message": output["response"]}
 
 
 def llm_generate_prompt(model, query):
     print("Start generate response from LLM", flush=True)
     response = client.generate(model=model, prompt=query)
+    response.pop("context")
     print(response, flush=True)
     return response

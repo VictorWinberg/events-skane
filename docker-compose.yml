@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    volumes:
+      - ./src/server:/code
     environment:
       - ENV=development
     networks:
