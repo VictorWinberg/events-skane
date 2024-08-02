@@ -1,2 +1,3 @@
 ollama
 !src/ollama
+__pycache__
