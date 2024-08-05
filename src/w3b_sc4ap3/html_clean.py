@@ -22,6 +22,8 @@ def remove_attributes(html):
         "xmlns",
         "encoding",
         "aria-hidden",
+        "points",
+        "role"
     ]
     for attr in attrs_to_remove:
         for tag in soup.find_all(attrs={f"{attr}": True}):
@@ -101,38 +103,9 @@ def clean_html(html):
 
     # Input html into pipe and pass on each method before returning value
     output = pipe(
-        input_html_str,
+        html,
         remove_attributes,
         promote_single_child_elements,
         remove_empty_elements,
     )
     return output
-
-
-# Example HTML
-input_html_str = """
-<html>
-    <body d="test" viewbox="123">
-        <div id="parent1" datetime="2024-04-23" version="2.0">
-            <div id="child1" data-info="important value">
-                <p>Some content</p>
-            </div>
-        </div>
-        <div id="parent2" width="30px" width="1px">
-            <div id="child2">
-                <div id="grandchild1" fill="hard" fill-rule="softis">
-                    <p>More content</p>
-                </div>
-            </div>
-        </div>
-        <p></p>
-        <a href="some" class="button" style="some custom css">
-            <p stroke="small" stroke-width="1px"></p>
-            <p></p>
-        </a>
-    </body>
-</html>
-
-"""
-
-output_html  = clean_html(input_html_str)

@@ -19,7 +19,7 @@ Run in terminal:
 
 Fast API server:
 ```sh
-curl --location 'http://localhost:80/weather/?country=Sweden'
+curl --location "http://localhost:80/weather/?country=Sweden"
 ```
 Ollama server:
 ```sh
