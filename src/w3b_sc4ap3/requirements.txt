@@ -1,3 +1,0 @@
-beautifulsoup4
-lxml
-ollama==0.3.1

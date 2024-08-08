@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# MODEL="qwen2:0.5b"
+MODEL="adrienbrault/nous-hermes2pro:Q5_K_M-json"
+
 echo "Starting Ollama server..."
 ollama serve &
 SERVER_PID=$!
@@ -9,10 +12,10 @@ while ! cat < /dev/null > /dev/tcp/localhost/11434; do
   sleep 1
 done
 
-ollama pull qwen2:0.5b
+ollama pull $MODEL
 
 echo "Waiting for the model to be downloaded..."
-while ! ollama list | grep -q 'qwen2:0.5b'; do
+while ! ollama list | grep -q $MODEL; do
   sleep 1
 done
 

@@ -1,10 +1,13 @@
-FROM python:3.9
+FROM python:3.10
 
 # Set the working directory to /code
 WORKDIR /code
 
 # Copy requirements.txt into the container at /code
 COPY ./requirements.txt /code/requirements.txt
+
+# Install libgl1
+RUN apt-get update && apt-get install libgl1 -y
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt

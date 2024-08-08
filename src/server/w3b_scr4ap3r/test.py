@@ -1,17 +1,9 @@
 from html_clean import clean_html
+from llm_magic import llm_generate_prompt
 
-from ollama import Client
-
-client = Client(host="http://127.0.0.1:11434")
 MODEL = "qwen2:0.5b"
 
-def llm_generate_prompt(model, query):
-    print("Start generate response from LLM", flush=True)
-    response = client.generate(model=model, prompt=query)
-    response.pop("context")
-    print(response, flush=True)
-    return response
-# Do some web Scaping 
+# Do some web Scaping
 # ===> Logic <===
 # Example HTML
 input_html_str = """
@@ -53,7 +45,7 @@ Event HTML code:
 # Post-Processing:
 # Use heuristics or additional models to refine the output from the LLM. This could involve correcting common errors, standardizing formats, or further structuring the data.
 
-# Perhaps use sparrow or something make sure to get proper json objects 
+# Perhaps use sparrow or something make sure to get proper json objects
 
 output_prompt = llm_generate_prompt(model=MODEL, query=structured_prompt)
 

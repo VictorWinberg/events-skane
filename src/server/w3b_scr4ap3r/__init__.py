@@ -1,0 +1,1 @@
+"""Init file for W3b Scr4p3r."""

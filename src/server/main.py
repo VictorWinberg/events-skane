@@ -1,18 +1,17 @@
-from typing import Union
 from fastapi import FastAPI
-import ollama
-from ollama import Client
+from llm_magic import llm_generate_prompt
+import json
 
-MODEL = "qwen2:0.5b"
+from w3b_scr4ap3r import rec_find
+
+# MODEL = "qwen2:0.5b"
+MODEL = "adrienbrault/nous-hermes2pro:Q5_K_M-json"
+
 app = FastAPI()
-# Why use the client, since we have this crazy networking going on
-client = Client(host="http://ollama:11434")
-
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
-
 
 @app.get("/weather/")
 def generate_prompt(country: str):
@@ -20,10 +19,11 @@ def generate_prompt(country: str):
     output = llm_generate_prompt(MODEL, user_query)
     return {"Message": output["response"]}
 
-
-def llm_generate_prompt(model, query):
-    print("Start generate response from LLM", flush=True)
-    response = client.generate(model=model, prompt=query)
-    response.pop("context")
-    print(response, flush=True)
-    return response
+@app.get("/prompt/")
+def get_prompt(query: str):
+    output = llm_generate_prompt(MODEL, query)
+    try:
+        data = json.loads(output["response"])
+        return data
+    except:
+        return output["response"]

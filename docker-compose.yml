@@ -6,7 +6,7 @@ services:
       context: ./src/server
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "3000:80"
     volumes:
       - ./src/server:/code
     environment:
