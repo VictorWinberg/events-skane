@@ -2,3 +2,4 @@ fastapi==0.111.1
 uvicorn==0.15.0
 ollama==0.3.1
 beautifulsoup4
+psycopg2

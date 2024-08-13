@@ -4,6 +4,8 @@ import json
 
 from w3b_scr4ap3r import rec_find
 
+from db_stuff import fetch_table_data
+
 # MODEL = "qwen2:0.5b"
 MODEL = "adrienbrault/nous-hermes2pro:Q5_K_M-json"
 
@@ -27,3 +29,9 @@ def get_prompt(query: str):
         return data
     except:
         return output["response"]
+    
+
+@app.get("/table/")
+def get_sources_list():
+    output = fetch_table_data()
+    return output
